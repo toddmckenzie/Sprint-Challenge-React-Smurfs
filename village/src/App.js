@@ -28,7 +28,7 @@ class App extends Component {
         console.log(err)
       })
   }
-/*
+
   componentDidUpdate() {
     axios.get('http://localhost:3333/smurfs')
     .then(res => {
@@ -40,7 +40,10 @@ class App extends Component {
       console.log(err)
     })
   }
-*/
+
+  deleteSmurf(smurf){
+
+  }
 
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
@@ -48,8 +51,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavLink to='/'>Smurfs List</NavLink>
+        <NavLink to='smurf-form'>Add Smurf</NavLink>
         <Route path='/smurf-form' render={props => <SmurfForm {...props} /> } />
-        <Route exact path='/' render={props => <Smurfs {...props} smurfs={this.state.smurfs}/> } />
+        <Route exact path='/' render={props => <Smurfs {...props} delteSmurf={this.deleteSmurf} smurfs={this.state.smurfs}/> } />
       </div>
     );
   }
