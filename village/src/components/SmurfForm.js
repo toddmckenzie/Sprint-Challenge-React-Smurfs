@@ -37,6 +37,7 @@ class SmurfForm extends Component {
       [e.target.name]: e.target.value });
   };
 
+
   render() {
     return (
       <div className="SmurfForm">

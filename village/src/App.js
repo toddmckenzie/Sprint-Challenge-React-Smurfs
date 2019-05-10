@@ -41,8 +41,16 @@ class App extends Component {
     })
   }
 
-  deleteSmurf(smurf){
-
+  deleteSmurf(id){
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+    .then(res => {
+      this.setState({
+        smurfs: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -51,10 +59,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavLink to='/'>Smurfs List</NavLink>
-        <NavLink to='smurf-form'>Add Smurf</NavLink>
+        <NavLink to='/'><h1>Smurfs List</h1></NavLink>
+        <NavLink to='smurf-form'><h1>Add Smurf</h1></NavLink>
         <Route path='/smurf-form' render={props => <SmurfForm {...props} /> } />
-        <Route exact path='/' render={props => <Smurfs {...props} delteSmurf={this.deleteSmurf} smurfs={this.state.smurfs}/> } />
+        <Route exact path='/' render={props => <Smurfs {...props} deleteSmurf={this.deleteSmurf} smurfs={this.state.smurfs}/> } />
       </div>
     );
   }
